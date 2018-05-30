@@ -37,11 +37,12 @@ public class WsRestIT {
 		       +numCli;
 	    String resultAsJsonString = restTemplate.getForObject(uri, String.class);
 	    logger.info("json listeComptes via rest: " + resultAsJsonString);
-	    List<Compte> listeComptes = restTemplate.getForObject(uri, List.class);
-	    logger.info("java listeComptes via rest: "  +listeComptes.toString());
-	    Assert.assertNotNull(listeComptes);
-	    Assert.assertTrue(listeComptes.size()>=0);
-
+	    Compte[] tabComptes = restTemplate.getForObject(uri,Compte[].class);
+	    logger.info("java listeComptes via rest: "  +tabComptes.toString());
+	    Assert.assertNotNull(tabComptes);   Assert.assertTrue(tabComptes.length>=0);
+	    for(Compte cpt : tabComptes){
+	    	System.out.println("\t" + cpt.toString());
+	    }
 	}
 	
 	@Test
@@ -52,13 +53,10 @@ public class WsRestIT {
 		    ordreVirement.setMontant(50.0);
 		    ordreVirement.setNumCptDeb(1L);
 		    ordreVirement.setNumCptCred(2L);
-		   
 		    OrdreVirement savedOrdreVirement =
 		    		restTemplate.postForObject(uri, ordreVirement, OrdreVirement.class);
 		    logger.info("savedOrdreVirement via rest: " + savedOrdreVirement.toString());
 		    Assert.assertTrue(savedOrdreVirement.getOk().equals(true));
-		   
-		   
 	}
 
 }
