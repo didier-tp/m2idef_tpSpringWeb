@@ -1,0 +1,2 @@
+2018-05-30 16:01:15,171 INFO main com.m2i.test.WsRestIT - json listeComptes via rest: [{"numero":1,"label":"compte courant","solde":250.7},{"numero":2,"label":"compte PEL xyz","solde":50.7,"tauxInteret":1.5,"apportMensuel":50.0},{"numero":3,"label":"compte courant","solde":0.7},{"numero":4,"label":"livret A xy","solde":345.6,"tauxInteret":1.0}]
+2018-05-30 16:08:30,977 INFO main com.m2i.test.WsRestIT - savedOrdreVirement via rest: OrdreVirement [montant=50.0, numCptDeb=1, numCptCred=2, ok=true, message=virement bien effectue]
