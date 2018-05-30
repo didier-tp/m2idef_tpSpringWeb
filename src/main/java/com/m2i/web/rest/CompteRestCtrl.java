@@ -42,9 +42,9 @@ public class CompteRestCtrl {
 	ResponseEntity<OrdreVirement> postOrdreVirement(@RequestBody OrdreVirement ordreVirement){
 		
 		try {
-			serviceCompte.effectuerVirement(ordreVirement.getMontant(),
-									 ordreVirement.getNumCptDeb(), 
-									 ordreVirement.getNumCptCred());
+			serviceCompte.effectuerVirement( ordreVirement.getNumCptDeb(), 
+									 ordreVirement.getNumCptCred(),
+									 ordreVirement.getMontant());
 			ordreVirement.setOk(true);
 			ordreVirement.setMessage("virement bien effectue");
 			return new ResponseEntity<OrdreVirement>(ordreVirement, HttpStatus.OK);

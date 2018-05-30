@@ -18,6 +18,7 @@
       <dependency>
 	      <groupId>com.m2i</groupId>
 	      <artifactId>tpJpa</artifactId>
+	      <!-- sera vu dans .m2/repository apres mvn install (sur tpJpa) -->
 	      <version>0.0.1-SNAPSHOT</version>
       </dependency>
       
