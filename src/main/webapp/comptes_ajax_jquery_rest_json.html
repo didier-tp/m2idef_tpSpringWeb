@@ -1,0 +1,60 @@
+   <html >
+    <head>
+	<script src="jquery-2.2.1.js"></script>
+    <script>
+	  var compteList;
+	  var numClient;
+	  
+      $(function() {
+	 	  
+	    
+		$('#btnSearch').on('click',function(){
+		  
+			numClient = $('#txtNumClient').val();
+		
+			$.ajax({
+		           type: "GET",
+		           url: "mvc/rest/compte/duClient?numClient=" + numClient,
+				   success: function (data,status,xhr) {
+		               if (data) {
+		            	   $('#tabComptes').empty();
+		            	   $('#tabComptes').append('</tr><tr><th>numero</th><th>label</th><th>solde</th></tr>');
+					       //alert(JSON.stringify(data));
+					       compteList = data;
+						   for(index in compteList){
+						       var cpt=compteList[index];
+						       //alert(JSON.stringify(cpt));
+						       $('#tabComptes').append('<tr><td>'+ cpt.numero + '</td><td>' + cpt.label + '</td><td>' + cpt.solde +'</td></tr>');					   
+						   }
+						   $("#spanMsg").html( "WebService result (JSON): " + JSON.stringify(compteList) ) ;
+		               } else {
+		                   $("#spanMsg").html("Cannot GET comptes du client !");
+		               }
+		           },
+		           error: function(xhr, status, error){
+		        	   $("#spanMsg").html( "status:" + status + " error : " + error ) ;
+		           }
+				   });
+	
+			
+			
+		});
+		
+      }); 
+   </script>
+   </head>
+     <body>
+	  
+	  numClient : <input id="txtNumClient" type='text' /><br/>
+	  <input type='button' value="rechercher comptes" id="btnSearch"/> <br/>
+	  <span id="spanMsg"></span> <br/>
+	  <hr/>
+	  liste comptes : <table border="1" id="tabComptes"> 
+	                      <tr><th>numero</th><th>label</th><th>solde</th></tr>
+	                   </table>
+	  <hr/>
+	   <a href="virement_ajax.html">virement (js/ajax + WS REST POST)</a>
+	  <hr/>
+	  <a href="index.html">retour vers index.html</a>
+	  </body>
+     </html>
