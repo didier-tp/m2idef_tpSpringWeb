@@ -1,5 +1,7 @@
 package com.m2i.test;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -7,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
-import com.m2i.entity.Devise;
+import com.m2i.entity.Compte;
 import com.m2i.web.rest.data.OrdreVirement;
 
 /*
@@ -35,9 +37,10 @@ public class WsRestIT {
 		       +numCli;
 	    String resultAsJsonString = restTemplate.getForObject(uri, String.class);
 	    logger.info("json listeComptes via rest: " + resultAsJsonString);
-	    //List<Compte> listeComptes = restTemplate.getForObject(uri, List.class);
-	    //logger.info("java devise EURvia rest: "  +listeComptes.toString());
-	    
+	    List<Compte> listeComptes = restTemplate.getForObject(uri, List.class);
+	    logger.info("java listeComptes via rest: "  +listeComptes.toString());
+	    Assert.assertNotNull(listeComptes);
+	    Assert.assertTrue(listeComptes.size()>=0);
 
 	}
 	
