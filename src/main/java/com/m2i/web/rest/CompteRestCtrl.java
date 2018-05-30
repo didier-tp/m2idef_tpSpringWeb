@@ -26,7 +26,7 @@ public class CompteRestCtrl {
 	private IServiceCompte serviceCompte; 
 	
 	//sera appelé en HTTP / GET avec l' URL suivante:
-	// http://localhost:8080/tpSpringWs/mvc/rest/compte/duClient?numClient=1
+	// http://localhost:8080/tpSpringWeb/mvc/rest/compte/duClient?numClient=1
 	@RequestMapping(value="/duClient" , method=RequestMethod.GET)
 	List<Compte> getComptesDuClient( @RequestParam("numClient") Long numClient ){
 		return serviceCompte.rechercherComptesDuClient(numClient);
@@ -35,7 +35,7 @@ public class CompteRestCtrl {
 	}
 	
 	//sera appelé en HTTP / POST avec l' URL suivante:
-	// http://localhost:8080/tpSpringWs/mvc/rest/compte/virement
+	// http://localhost:8080/tpSpringWeb/mvc/rest/compte/virement
 	//avec en entrée { "montant" : 50.0 , "numCptDeb" : 1 , "numCptCred" : 2 } 
 	//en retour on renvoie l'ordre de virement comportant en plus  , "ok" : true , "message" : "virement effectue" }
 	@RequestMapping(value="/virement" , method=RequestMethod.POST)
