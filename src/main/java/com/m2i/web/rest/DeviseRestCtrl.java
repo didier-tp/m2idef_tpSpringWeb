@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,5 +50,20 @@ public class DeviseRestCtrl {
 			}
 			
 		}
+	
+		//sera appelé en HTTP / GET avec l' URL suivante:
+		// http://localhost:8080/tpSpringWeb/mvc/rest/devise
+		@RequestMapping(value="" , method=RequestMethod.POST)
+		ResponseEntity<Devise> postDevise(@RequestBody Devise devise){
+				try {
+					daoDevise.insertDevise(devise);
+					return new ResponseEntity<Devise>(devise,HttpStatus.OK);
+				} catch (Exception e) {
+					//e.printStackTrace();
+					System.err.println(e.getMessage());//ou logger....
+					return new ResponseEntity<Devise>(HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+				
+			}
 }
 
