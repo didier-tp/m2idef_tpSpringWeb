@@ -51,7 +51,7 @@ public class DeviseRestCtrl {
 			
 		}
 	
-		//sera appelé en HTTP / GET avec l' URL suivante:
+		//sera appelé en HTTP / POST avec l' URL suivante:
 		// http://localhost:8080/tpSpringWeb/mvc/rest/devise
 		@RequestMapping(value="" , method=RequestMethod.POST)
 		ResponseEntity<Devise> postDevise(@RequestBody Devise devise){
