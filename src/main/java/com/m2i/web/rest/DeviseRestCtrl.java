@@ -54,9 +54,15 @@ public class DeviseRestCtrl {
 		//sera appelé en HTTP / POST avec l' URL suivante:
 		// http://localhost:8080/tpSpringWeb/mvc/rest/devise
 		@RequestMapping(value="" , method=RequestMethod.POST)
+		//POST ici au sens "saveOrUpdate" (ou bien POST et PUT)
 		ResponseEntity<Devise> postDevise(@RequestBody Devise devise){
 				try {
-					daoDevise.insertDevise(devise);
+					Devise deviseExistante = 
+							daoDevise.findDeviseByCode(devise.getCodeDevise());
+					if(deviseExistante==null)
+					    daoDevise.insertDevise(devise);
+					else 
+						daoDevise.updateDevise(devise);
 					return new ResponseEntity<Devise>(devise,HttpStatus.OK);
 				} catch (Exception e) {
 					//e.printStackTrace();
