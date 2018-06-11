@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import com.m2i.entity.Devise;
 @RestController
 @RequestMapping(value="/rest/devise" , 
                 headers="Accept=application/json")
+@CrossOrigin(origins="*")
 public class DeviseRestCtrl {
 	
 	//business service (ou DAO) vers lequel déléguer les traitements :
